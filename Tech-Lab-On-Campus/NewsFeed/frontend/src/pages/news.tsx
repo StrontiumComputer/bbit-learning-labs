@@ -64,6 +64,22 @@ export default function News() {
             // Once completing you should be able to see news articles different from the dummy data originally provided.
 
             // Hint: this may be useful to figure how to fetch data: https://medium.com/@bhanu.mt.1501/api-calls-in-react-js-342a09d5315f
+            const articlesResponse = await fetch(
+                'https://curly-barnacle-j95qwqv55w5c5pjx-8000.app.github.dev/get-newsfeed'
+             );
+             const data = await articlesResponse.json();
+             console.log(data);
+             setArticles(data);
+            setArticles(await articlesResponse.json());
+
+            const featuredArticleResponse = await fetch('https://curly-barnacle-j95qwqv55w5c5pjx-8000.app.github.dev/get-featured-article', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            setFeaturedArticle(await featuredArticleResponse.json());
+
         }
         fetchData();
     }, [])
@@ -74,9 +90,6 @@ export default function News() {
                 <div className="col-span-4 lg:col-span-3">
                     <FeaturedNewsCard article={featuredArticle} />
                     <NewsFeed articles={articles} />
-
-                    {/* Once you're done with Part 4, feel free to remove the span below! */}
-                    <span className="instruction">Part 4: Connect the backend and fetch real data</span>
 
                 </div>
                 <div className="hidden lg:block col-span-1 overflow-hidden border-l border-slate-300">

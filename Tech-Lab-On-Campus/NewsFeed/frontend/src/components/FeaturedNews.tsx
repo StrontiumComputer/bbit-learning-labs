@@ -33,7 +33,7 @@ function FeaturedNewsCard({ article }: NewsCardProps) {
                     {article.author && <span className="featured-story-author">By {article.author}</span>}
                     {article.url &&
                         <span className="featured-story-author" >
-                            Via <Link className="origin-link" href={article.url} target="_blank">{article.url}</Link>
+                            <Link className="origin-link" href={article.url} target="_blank">{article.url}</Link>
                         </span>
                     }
                 </div>
